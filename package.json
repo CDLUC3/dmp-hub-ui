@@ -1,0 +1,32 @@
+{
+  "name": "dmp-hub-ui",
+  "version": "1.0.0",
+  "description": "Example package.json",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CDLUC3/dmp-hub-ui.git"
+  },
+  "keywords": [
+    "DMP",
+    "DMPHub",
+    "DMPTool",
+    "React"
+  ],
+  "author": "briley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CDLUC3/dmp-hub-ui/issues"
+  },
+  "homepage": "https://github.com/CDLUC3/dmp-hub-ui#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "typescript": "^4.9.5"
+  }
+}

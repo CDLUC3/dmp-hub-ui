@@ -1,0 +1,36 @@
+# Build specifications for AWS CodeBuild
+#   See: https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+#
+# This file is used by AWS CodeBuild to build the React application and place it into
+# an S3 bucket used by an AWS CloudFront Distribution.
+#
+# It expects the React app to be built with Node Package Manager (NPM). If we decide to use
+# a different JS package manager, we will need to update the `pre_build` and `build` steps below.
+#
+# The S3_BUCKET and CLOUDFRONT_DISTRO_ID environment variables are set by AWS CodePipeline within
+# the AWS environment. This file is not meant to be run outside that context.
+version: 0.2
+
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    runtime-versions:
+      nodejs: 16
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on 'date'
+      - npm run build
+  post_build:
+    commands:
+      - aws s3 cp --recursive --acl public-read ./build s3://$S3_BUCKET/
+      - aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://$S3_BUCKET/
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRO_ID --paths /index.html
+artifacts:
+  files:
+    - "build/*"
+    - "build/**/*"
