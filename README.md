@@ -19,6 +19,8 @@ An AWS CodePipeline has been created that monitors this repositories `main` bran
 
 An email of the build results can be emailed. The email will contain the results of `npm install` and `npm run build`.
 
+## Commands
+
 ### `npm start`
 
 Runs the app in the development mode.\
