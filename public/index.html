@@ -25,6 +25,27 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    
+    <!--
+      This script is required in order for CloudFront to be able to find the appropriate
+      resource when the user requests a path without a file and/or extenstion (e.g. /blog gets rewritten to /blog/index.html). 
+        See: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example-function-add-index.html
+    -->
+    <script>
+      function handler(event) {
+        var request = event.request;
+        var uri = request.uri;
+
+        if (uri.endsWith('/')) {
+          // Check whether the URI is missing a file name.
+          request.uri += 'index.html';
+        } else if (!uri.includes('.')) {
+          // Check whether the URI is missing a file extension.
+          request.uri += '/index.html';
+        }
+        return request;
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
