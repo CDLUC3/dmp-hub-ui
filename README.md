@@ -9,14 +9,17 @@ See the wiki (need to build this page and add the link here)
 
 ## Data Sources
 
-This application uses the DMPHub's API. The API uses a JSON format that is based on the [RDA Common Metadata Standard](https://github.com/RDA-DMP-Common/RDA-DMP-Common-Standard) to describe DMP metadata. See the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/API-Overview) for the available endpoints, an example of the DMP JSON and explanations of each attribute.
+This application uses the DMPHub's API. The API uses a JSON format that is based on the [RDA Common Metadata Standard](https://github.com/RDA-DMP-Common/RDA-DMP-Common-Standard) to describe DMP metadata. See the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/API-Overview) for the available endpoints, an example of the DMP JSON and explanations of each attribute. If an issue is encountered with the API, please [report an issue](https://github.com/CDLUC3/dmp-hub-cfn/issues) so that the fix can be tracked and prioritized appropriately.
 
 ## Infrastructure
 
 This application is hosted in an AWS S3 bucket and served via an AWS Cloudfront distribution. See the [dmp-hub-cfn repository](https://github.com/CDLUC3/dmp-hub-cfn/tree/main) For information on these components
 
-## Available Scripts
+An AWS CodePipeline has been created that monitors this repositories `main` branch. When changes are made, it will trigger the pipeline. The pipeline will use this project's `buildspec.yaml` file to build the application and deploy the updates to the S3 bucket.
 
+An email of the build results can be emailed. The email will contain the results of `npm install` and `npm run build`.
+
+## Commands
 In the project directory, you can run the following:
 
 ### `npm start`
