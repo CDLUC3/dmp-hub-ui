@@ -36,7 +36,9 @@ phases:
       - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRO_ID --paths /index.html --region us-east-1
 
       # Send the results of the build to the CodeBuild email address
-      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message file://build.log --region $AWS_REGION
+      - LOG_FILE=$(pwd)/build.log
+      - echo $LOG_FILE
+      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message $LOG_FILE --region $AWS_REGION
 artifacts:
   files:
     - "build/*"
