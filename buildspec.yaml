@@ -19,22 +19,29 @@ phases:
       nodejs: 16
   pre_build:
     commands:
+      - echo 'CodeBuild for the dmp-hub-ui repository' 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
       - echo 'Installing source NPM dependencies...' 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
       - npm install 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
   build:
     commands:
       - echo "Build started on 'date'" 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
       - npm run build 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
   post_build:
     commands:
       # Upload the files to CloudFront's S3 bucket
       - echo 'Deploying assets to CloudFront...' 2>&1 | tee -a build.log
+      - echo '' 2>&1 | tee -a build.log
       # --acl public-read
       - aws s3 cp --recursive ./build s3://$S3_BUCKET/ | tee -a build.log
       - aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://$S3_BUCKET/
       # Invalidate the CloudFront cache so that it serves the updated assets
       - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRO_ID --paths /index.html --region us-east-1
-
+      - echo '' 2>&1 | tee -a build.log
       # Send the results of the build to the CodeBuild email address
       - LOG_FILE=$(pwd)/build.log
       - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message file://$LOG_FILE --region $AWS_REGION
