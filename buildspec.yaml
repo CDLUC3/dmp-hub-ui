@@ -37,8 +37,7 @@ phases:
 
       # Send the results of the build to the CodeBuild email address
       - LOG_FILE=$(pwd)/build.log
-      - echo $LOG_FILE
-      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message $LOG_FILE --region $AWS_REGION
+      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message file://$LOG_FILE --region $AWS_REGION
 artifacts:
   files:
     - "build/*"
