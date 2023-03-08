@@ -19,20 +19,23 @@ phases:
       nodejs: 16
   pre_build:
     commands:
-      - echo Installing source NPM dependencies... 2>&1 | tee -a build.log
-      - npm install  2>&1 | tee -a build.log
+      - echo 'Installing source NPM dependencies...' 2>&1 | tee -a build.log
+      - npm install 2>&1 | tee -a build.log
   build:
     commands:
-      - echo Build started on 'date'  2>&1 | tee -a build.log
-      - npm run build  2>&1 | tee -a build.log
+      - echo "Build started on 'date'" 2>&1 | tee -a build.log
+      - npm run build 2>&1 | tee -a build.log
   post_build:
     commands:
-      # Send the results of the build to the CodeBuild email address
-      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message file://build.log
       # Upload the files to CloudFront's S3 bucket
-      - aws s3 cp --recursive --acl public-read ./build s3://$S3_BUCKET/
-      - aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://$S3_BUCKET/
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRO_ID --paths /index.html
+      - echo 'Deploying assets to CloudFront...' 2>&1 | tee -a build.log
+      - aws s3 cp --recursive --acl public-read ./build s3://$S3_BUCKET/ --region $AWS_REGION 2>&1 | tee -a build.log
+      - aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://$S3_BUCKET/ --region $AWS_REGION
+      # Invalidate the CloudFront cache so that it serves the updated assets
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRO_ID --paths /index.html --region us-east-1
+
+      # Send the results of the build to the CodeBuild email address
+      - aws sns publish --topic-arn $SNS_EMAIL_TOPIC --message file://build.log --region $AWS_REGION
 artifacts:
   files:
     - "build/*"
