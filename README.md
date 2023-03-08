@@ -17,7 +17,7 @@ This application is hosted in an AWS S3 bucket and served via an AWS Cloudfront 
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run the following:
 
 ### `npm start`
 
