@@ -21,7 +21,9 @@ An email of the build results can be emailed. The email will contain the results
 
 ## DMPTool API
 
-The DMPTool API that should be used by the React code is hosted by the AWS API Gateway. Documentation of the API can be found on the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/api-overview). For any issues encountered with the API, please create new tickets on the [dmp-hub-cfn issue list](https://github.com/CDLUC3/dmp-hub-cfn/issues)
+The DMPTool API that should be used by the React code is hosted by the AWS API Gateway. Documentation of the API can be found on the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/api-overview). For any issues encountered with the API, please create new tickets on the [dmp-hub-cfn issue list](https://github.com/CDLUC3/dmp-hub-cfn/issues).
+
+Use the `dmphub-dev.cdlib.org` domain when working with the API.
 
 ## Commands
 In the project directory, you can run the following:
