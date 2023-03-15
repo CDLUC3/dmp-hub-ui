@@ -19,6 +19,10 @@ An AWS CodePipeline has been created that monitors this repositories `main` bran
 
 An email of the build results can be emailed. The email will contain the results of `npm install` and `npm run build`.
 
+## DMPTool API
+
+The DMPTool API that should be used by the React code is hosted by the AWS API Gateway. Documentation of the API can be found on the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/api-overview). For any issues encountered with the API, please create new tickets on the [dmp-hub-cfn issue list](https://github.com/CDLUC3/dmp-hub-cfn/issues)
+
 ## Commands
 In the project directory, you can run the following:
 
