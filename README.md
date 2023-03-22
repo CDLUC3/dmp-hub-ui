@@ -5,7 +5,7 @@ This repository contains the user interface for the DMPHub system. The DMPHub is
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Use Cases
-See the wiki (need to build this page and add the link here)
+See the individual issues in this repo and/or the [Trello board](https://trello.com/b/zlLicieW/dmptool)
 
 ## Data Sources
 
