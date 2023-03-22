@@ -1,6 +1,6 @@
 # dmp-hub-ui
 
-This repository contains the user interface for the DMPHub system. The DMPHub is a metadata repository for Data Management Plans (DMPs). The website is written in React.
+This repository contains the new React interface for the DMPTool. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
