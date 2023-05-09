@@ -8,7 +8,7 @@ const HelloWorld = () => {
 
   return (
     <section>
-      <p>This is an example React page. Click the button below to see the message.</p>
+      <p>This is an example React page. Click the button below to see a message.</p>
       <button onClick={sayHello}>Click me!</button>
     </section>
   );
