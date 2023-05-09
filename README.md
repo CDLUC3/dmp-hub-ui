@@ -1,11 +1,11 @@
 # dmp-hub-ui
 
-This repository contains the user interface for the DMPHub system. The DMPHub is a metadata repository for Data Management Plans (DMPs). The website is written in React.
+This repository contains the new React interface for the DMPTool. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Use Cases
-See the wiki (need to build this page and add the link here)
+See the individual issues in this repo and/or the [Trello board](https://trello.com/b/zlLicieW/dmptool)
 
 ## Data Sources
 
@@ -18,6 +18,12 @@ This application is hosted in an AWS S3 bucket and served via an AWS Cloudfront 
 An AWS CodePipeline has been created that monitors this repositories `main` branch. When changes are made, it will trigger the pipeline. The pipeline will use this project's `buildspec.yaml` file to build the application and deploy the updates to the S3 bucket.
 
 An email of the build results can be emailed. The email will contain the results of `npm install` and `npm run build`.
+
+## DMPTool API
+
+The DMPTool API that should be used by the React code is hosted by the AWS API Gateway. Documentation of the API can be found on the [dmp-hub-cfn repository's wiki](https://github.com/CDLUC3/dmp-hub-cfn/wiki/api-overview). For any issues encountered with the API, please create new tickets on the [dmp-hub-cfn issue list](https://github.com/CDLUC3/dmp-hub-cfn/issues).
+
+Use the `dmphub-dev.cdlib.org` domain when working with the API.
 
 ## Commands
 In the project directory, you can run the following:
