@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Dashboard from './index';
+import AddPlanPage from './add';
 
 describe('Dashboard', () => {
   it('renders the title', () => {
-    render(<Dashboard />);
-    const dash_text = screen.getByText("Dashboard page");
-    expect(dash_text).toBeInTheDocument()
+    render(<AddPlanPage />);
+    const add_text = screen.getByText("Add a Plan");
+    expect(add_text).toBeInTheDocument()
   });
 });

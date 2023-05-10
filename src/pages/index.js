@@ -1,7 +1,11 @@
 
 
 function Dashboard() {
-  return <div>Dashboard page</div>
+  return (
+    <>
+      <div id="Dashboard">Dashboard page</div>
+    </>
+  )
 }
 
 
