@@ -1,13 +1,9 @@
 
-function AddPlanPage() {
+function PlanOverview() {
   return (
     <>
       <div id="addPlan">
         <h2>Add a Plan</h2>
-        <p className="beta-tag">
-          This is a new beta service. Your <a href="#">feedback</a>
-          will help us to improve it.</p>
-
         <div className="plan-steps">
           <h3>Plan Setup</h3>
 
@@ -62,4 +58,4 @@ function AddPlanPage() {
   )
 }
 
-export default AddPlanPage
+export default PlanOverview
