@@ -16,10 +16,23 @@ code {
 
 
 :root {
+  // TODO:: Use proper colour names here and replace the values for our
+  // components with those.
+
   /* Root level css variables go here */
-  --btn-basic-bg-color: blue;
-  --btn-basic-fg-color: white;
+  --btn-basic-bg-color: white;
+  --btn-basic-fg-color: #333;
   --btn-border-radius: 5px;
+
+  --btn-primary-bg-color: blue;
+  --btn-primary-fg-color: white;
+
+  /* Form components */
+  --form-field-bg-color: white;
+  --form-field-fg-color: #333;
+  --form-field-border-color: #aaa;
+
+  --input-required-color: red;
 
   /* Data Grid */
   --grid-gap: 1rem;
@@ -51,29 +64,25 @@ body {
 
 header {
   /* TODO:: */
+  padding: 1rem;
 }
 
 footer {
   /* TODO:: */
+  padding: 1rem;;
 }
 
 main {
   /* TODO:: Responsive Flex/Grid Layout */
-  padding: 1rem;
+  padding: 2rem;
 }
 
-
-/* Form components, and buttons */
-button {
-  background-color: var(--btn-basic-bg-color);
-  color: var(--btn-basic-fg-color);
-  border: none;
-  border-radius: var(--btn-border-radius);
-  font-weight: bold;
-}
-
+@import 'components/forms';
 
 /* Tables */
+// TODO::FIXME:: This data grid component is just temporary. Chances are we'll
+// be using a third party grid. We use the following just wile setting up the
+// basic layout
 .data-grid {
   display: grid;
   grid-gap: var(--grid-gap);
@@ -81,8 +90,4 @@ button {
 
 .data-heading {
   font-weight: bold;
-}
-
-.data-cell {
-
 }

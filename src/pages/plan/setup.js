@@ -1,5 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 
+import './setup.scss';
+
 
 function PlanSetup() {
   let navigate = useNavigate();
@@ -34,7 +36,7 @@ function PlanSetup() {
 
   return (
     <>
-      <div id="addPlan">
+      <div id="planSetup">
         <h2>Plan Setup</h2>
 
         <form method="post" onSubmit={handleSubmit}>
@@ -59,16 +61,18 @@ function PlanSetup() {
               </p>
             </div>
 
-            <div className="form-field-input">
+            <div className="form-field-input todo">
               <input name="project_pdf" type="file" />
             </div>
           </div>
 
-          <div className="page-actions">
+          <div className="form-actions todo">
             <button type="button" onClick={() => navigate("/")}>Cancel</button>
-            <button type="submit">Save &amp; Continue</button>
+            <button type="submit" className="primary">Save &amp; Continue</button>
           </div>
+
         </form>
+
       </div>
     </>
   )

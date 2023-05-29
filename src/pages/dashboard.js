@@ -62,35 +62,33 @@ function Dashboard() {
   });
 
   return (
-    <>
-      <div id="Dashboard">
-        <h2>
-          Dashboard
-          <button onClick={() => navigate("/plan/add")}>
-            Add Plan
-          </button>
-        </h2>
+    <div id="Dashboard">
+      <h2>
+        Dashboard
+        <button className="primary" onClick={() => navigate("/plan/add")}>
+          Add Plan
+        </button>
+      </h2>
 
-        <div className="project-list">
-          <div className="data-cell data-heading">Project Name</div>
-          <div className="data-cell data-heading">Funder</div>
-          <div className="data-cell data-heading tablet">Grant ID</div>
-          <div className="data-cell data-heading laptop">DMP ID</div>
-          <div className="data-cell data-heading laptop">Status</div>
-          <div className="data-cell data-heading laptop"></div>
+      <div className="project-list">
+        <div className="data-cell data-heading">Project Name</div>
+        <div className="data-cell data-heading">Funder</div>
+        <div className="data-cell data-heading tablet">Grant ID</div>
+        <div className="data-cell data-heading laptop">DMP ID</div>
+        <div className="data-cell data-heading laptop">Status</div>
+        <div className="data-cell data-heading laptop"></div>
 
-          <div className="data-cell">Project A Name</div>
-          <div className="data-cell">NIH</div>
-          <div className="data-cell tablet">12345-A</div>
-          <div className="data-cell laptop">—</div>
-          <div className="data-cell laptop todo">Incomplete</div>
-          <div className="data-cell laptop actions">
-            <a href="#">Complete</a>
-          </div>
-
+        <div className="data-cell">Project A Name</div>
+        <div className="data-cell">NIH</div>
+        <div className="data-cell tablet">12345-A</div>
+        <div className="data-cell laptop">—</div>
+        <div className="data-cell laptop todo">Incomplete</div>
+        <div className="data-cell laptop actions">
+          <a href="#">Complete</a>
         </div>
+
       </div>
-    </>
+    </div>
   )
 }
 
