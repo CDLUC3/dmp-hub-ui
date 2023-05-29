@@ -19,8 +19,15 @@ function PlanFunders() {
             </p>
           </div>
           <div className="form-field-input">
-            <input name="funder_yes" type="checkbox" /> yes <br />
-            <input name="funder_no" type="checkbox" /> no
+            <span>Funder</span>
+            <label>
+              <input name="has_funder" type="radio" />
+              yes
+            </label>
+            <label>
+              <input name="has_funder" type="radio" />
+              no
+            </label>
           </div>
         </div>
 
@@ -32,9 +39,12 @@ function PlanFunders() {
             </p>
           </div>
           <div className="form-field-input">
-            <label htmlFor="">Funder</label>
+            <label htmlFor="">Funder Name</label>
             <input name="" type="text" value="" />
-            <input name="" type="checkbox" /> My funder isn't listed
+            <label>
+              <input id="id_funder_not_listed" name="funder_not_listed" type="checkbox" />
+              My funder isn't listed
+            </label>
           </div>
         </div>
 

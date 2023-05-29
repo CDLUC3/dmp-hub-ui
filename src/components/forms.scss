@@ -29,9 +29,13 @@ button, input[type="button"], input[type="submit"] {
   }
 
   .form-field-input {
+    display: flex;
+    flex-direction: column;
     padding: 0.5em 0;
 
-    & > * { width: 100%; }
+    & > * { margin-bottom: 0.5rem; }
+
+    input[type="text"] { width: 100%; }
 
     input[type="text"], textarea {
       box-sizing: border-box;
@@ -40,6 +44,11 @@ button, input[type="button"], input[type="submit"] {
       color: var(--form-field-fg-color);
       background-color: var(--form-field-bg-color);
       padding: 0.5em 1em;
+    }
+
+    input[type="radio"] {
+      vertical-align: text-bottom;
+      width: auto;
     }
   }
 
