@@ -1,5 +1,11 @@
+import {useNavigate} from 'react-router-dom';
 
-function FunderPage() {
+import './funder.scss';
+
+
+function PlanFunders() {
+  let navigate = useNavigate();
+
   return (
     <>
       <div id="funderPage">
@@ -32,14 +38,13 @@ function FunderPage() {
           </div>
         </div>
 
-        <div className="page-actions">
+        <div className="form-actions todo">
           <button>Cancel</button>
-          <button>Save &amp; Continue</button>
+          <button className="primary">Save &amp; Continue</button>
         </div>
-
       </div>
     </>
   )
 }
 
-export default FunderPage
+export default PlanFunders;

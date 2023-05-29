@@ -35,46 +35,49 @@ function PlanSetup() {
   }
 
   return (
-    <>
-      <div id="planSetup">
-        <h2>Plan Setup</h2>
+    <div id="planSetup">
+      <h2>Plan Setup</h2>
 
-        <form method="post" onSubmit={handleSubmit}>
-          <div className="form-field required">
-            <div className="form-field-label">
-              <label>Project Name</label>
-              <p className="help-text">
-                All or part of the project name/title, e.g. 'Particle Physics'
-              </p>
-            </div>
-            <div className="form-field-input">
-              <input name="project_name" type="text" />
-            </div>
+      <form method="post" onSubmit={handleSubmit}>
+        <div className="form-field required">
+          <div className="form-field-label">
+            <label>Project Name</label>
+            <p className="help-text">
+              All or part of the project name/title, e.g. 'Particle Physics'
+            </p>
+          </div>
+          <div className="form-field-input">
+            <input name="project_name" type="text" />
+          </div>
+        </div>
+
+        <div className="form-field required">
+          <div className="form-field-label">
+            <label>Upload DMP</label>
+            <p className="help-text">
+              Only PDFs may be uploaded, and files should be no more than
+              250kb.
+            </p>
           </div>
 
-          <div className="form-field required">
-            <div className="form-field-label">
-              <label>Upload DMP</label>
-              <p className="help-text">
-                Only PDFs may be uploaded, and files should be no more than
-                250kb.
-              </p>
-            </div>
-
-            <div className="form-field-input todo">
-              <input name="project_pdf" type="file" />
-            </div>
+          <div className="form-field-input todo">
+            <input name="project_pdf" type="file" />
           </div>
+        </div>
 
-          <div className="form-actions todo">
-            <button type="button" onClick={() => navigate("/")}>Cancel</button>
-            <button type="submit" className="primary">Save &amp; Continue</button>
-          </div>
+        <div className="form-actions todo">
+          <button type="button" onClick={() => navigate("/")}>Cancel</button>
+          <button
+            type="submit"
+            className="primary"
+            onClick={() => navigate("/plan/funder")}>
+            Save &amp; Continue
+          </button>
+        </div>
 
-        </form>
+      </form>
 
-      </div>
-    </>
+    </div>
   )
 }
 
