@@ -1,0 +1,88 @@
+@import "components/responsive";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+:root {
+  /* Root level css variables go here */
+  --btn-basic-bg-color: blue;
+  --btn-basic-fg-color: white;
+  --btn-border-radius: 5px;
+
+  /* Data Grid */
+  --grid-gap: 1rem;
+}
+
+
+.todo {
+  --_color-todo: var(--color-todo, #700);
+
+  position: relative;
+  border: 1px dashed var(--_color-todo);
+}
+
+.todo:after {
+  content: "todo";
+  position: absolute;
+  background-color: var(--_color-todo);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0.25em;
+  top: 0;
+  right: 0;
+}
+
+body {
+  /* TODO:: */
+}
+
+header {
+  /* TODO:: */
+}
+
+footer {
+  /* TODO:: */
+}
+
+main {
+  /* TODO:: Responsive Flex/Grid Layout */
+  padding: 1rem;
+}
+
+
+/* Form components, and buttons */
+button {
+  background-color: var(--btn-basic-bg-color);
+  color: var(--btn-basic-fg-color);
+  border: none;
+  border-radius: var(--btn-border-radius);
+  font-weight: bold;
+}
+
+
+/* Tables */
+.data-grid {
+  display: grid;
+  grid-gap: var(--grid-gap);
+}
+
+.data-heading {
+  font-weight: bold;
+}
+
+.data-cell {
+
+}

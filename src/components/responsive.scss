@@ -1,0 +1,28 @@
+/* NOTE:: Since we are doing responsive, all CSS that DOESN'T use
+ * media queries will be assumed to be for mobile sizes.
+ */
+
+@mixin device($breakpoint) {
+  @if $breakpoint == tablet {
+    @media screen and (min-width: 481px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == laptop {
+    @media screen and (min-width: 769px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop {
+    @media screen and (min-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+.tablet, .laptop, .desktop { display: none; }
+// NOTE:: We don't do automatic "display" queries for _showing_ the elements
+// above becuase, we don't have a guarantee what type of display element it
+// should be (ie. block, inline, grid or flex)
