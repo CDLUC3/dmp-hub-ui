@@ -70,7 +70,7 @@ function PlanSetup() {
           <button
             type="submit"
             className="primary"
-            onClick={() => navigate("/plan/funder")}>
+            onClick={() => navigate("/plan/funders")}>
             Save &amp; Continue
           </button>
         </div>

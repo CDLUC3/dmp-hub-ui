@@ -39,8 +39,8 @@ function PlanFunders() {
             </p>
           </div>
           <div className="form-field-input">
-            <label htmlFor="">Funder Name</label>
-            <input name="" type="text" value="" />
+            <label>Funder Name</label>
+            <input name="tmp" type="text" defaultValue="" />
             <label>
               <input id="id_funder_not_listed" name="funder_not_listed" type="checkbox" />
               My funder isn't listed
@@ -49,7 +49,7 @@ function PlanFunders() {
         </div>
 
         <div className="form-actions todo">
-          <button>Cancel</button>
+          <button onClick={() => navigate("/")}>Cancel</button>
           <button className="primary">Save &amp; Continue</button>
         </div>
       </div>
