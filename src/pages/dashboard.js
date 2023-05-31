@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, Fragment} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
   api_path,
@@ -14,52 +14,34 @@ function Dashboard() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    let url = api_path('/me');
-    let options = api_options({headers: api_headers()});
-    fetch(url, options).then((resp) => {
-      console.log('Decode response');
-      console.log(resp);
-      return resp.json();
-    }).then((data) => {
-      console.log('Response data?');
-      console.log(data);
+    let url = api_path('/wips', {
+      owner: "jane.doe@example.com",
     });
+    let options = api_options({
+      headers: api_headers(),
+    });
+    fetch(url, options).then((resp) => {
+      switch (resp.status) {
+        case 200:
+          return resp.json();
+          break;
 
-    // let url = api_path('/wips', {
-    //   owner: "jane.doe@example.com",
-    // });
-    // let options = api_options({
-    //   headers: api_headers(),
-    // });
-    // fetch(url, options).then((resp) => {
-    //   switch (resp.status) {
-    //     case 200:
-    //       return resp.json();
-    //       break;
-
-    //     default:
-    //       // TODO:: Error handling
-    //       // TODO:: Log and report errors to a logging services
-    //       // TODO:: Message to display to the user?
-    //       console.log('Error fetching from API');
-    //       console.log(resp);
-    //   }
-    // }).then((data) => {
-    //   console.log(data);
-    //   let list_data = JSON.parse(data.items);
-    //   console.log(list_data);
-    //   setProjects(list_data);
-    // });
-
+        default:
+          // TODO:: Error handling
+          // TODO:: Log and report errors to a logging services
+          // TODO:: Message to display to the user?
+          console.log('Error fetching from API');
+          console.log(resp);
+      }
+    }).then((data) => {
+      console.log(data.items.map(i => JSON.parse(i)));
+      setProjects(data.items.map(i => JSON.parse(i)));
+    });
   }, []);
 
-  let projectList = projects.map(proj => {
-    // TODO::FIXME:: Decode the json in the response items
-    console.log(proj);
-    return (
-      <div>{proj}</div>
-    )
-  });
+  function dmp_id_for(dmp) {
+    return dmp.dmphub_wip_id.identifier;
+  }
 
   return (
     <div id="Dashboard">
@@ -70,23 +52,43 @@ function Dashboard() {
         </button>
       </h2>
 
-      <div className="project-list">
-        <div className="data-cell data-heading">Project Name</div>
-        <div className="data-cell data-heading">Funder</div>
-        <div className="data-cell data-heading tablet">Grant ID</div>
-        <div className="data-cell data-heading laptop">DMP ID</div>
-        <div className="data-cell data-heading laptop">Status</div>
-        <div className="data-cell data-heading laptop"></div>
+      <div className="project-list todo">
+        <div className="data-heading" data-colname="title">Project Name</div>
+        <div className="data-heading" data-colname="funder">Funder</div>
+        <div className="data-heading" data-colname="grantId">Grant ID</div>
+        <div className="data-heading" data-colname="dmpId">DMP ID</div>
+        <div className="data-heading" data-colname="status">Status</div>
+        <div className="data-heading" data-colname="actions"></div>
 
-        <div className="data-cell">Project A Name</div>
-        <div className="data-cell">NIH</div>
-        <div className="data-cell tablet">12345-A</div>
-        <div className="data-cell laptop">—</div>
-        <div className="data-cell laptop todo">Incomplete</div>
-        <div className="data-cell laptop actions">
+        <div data-colname="title">Static test Project</div>
+        <div data-colname="funder">NIH</div>
+        <div data-colname="grantId">12345-A</div>
+        <div data-colname="dmpId"></div>
+        <div data-colname="status">
+          Incomplete <br />
+          <progress max="10" value="7"/>
+        </div>
+        <div data-colname="actions">
           <a href="#">Complete</a>
         </div>
 
+        {projects.map(item => (
+          <Fragment key={item.dmp.dmphub_wip_id.identifier}>
+            <div data-colname="title">{item.dmp?.title}</div>
+            <div data-colname="funder">{item?.funder}</div>
+            <div data-colname="grantId">tbd…</div>
+            <div data-colname="dmpId">
+              {item.dmp.dmphub_wip_id.identifier}
+            </div>
+            <div data-colname="status">
+              Incomplete <br />
+              <progress max="10" value="3"/>
+            </div>
+            <div data-colname="actions">
+              <a href="#">tbd…</a>
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )

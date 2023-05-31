@@ -15,19 +15,23 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
 
-  .tablet, .laptop, .desktop { display: none; }
+  [data-colname="funder"],
+  [data-colname="grantId"],
+  [data-colname="dmpId"],
+  [data-colname="actions"] { display: none; }
 
   @include device(tablet) {
     grid-template-columns: repeat(3, 1fr);
-    .tablet { display: block; }
+    [data-colname="funder"] { display: block; }
   }
 
   @include device(laptop) {
     grid-template-columns: repeat(6, 1fr);
-    .laptop { display: block; }
+    [data-colname="grantId"],
+    [data-colname="dmpId"],
+    [data-colname="actions"] { display: block; }
   }
 
-  @include device(desktop) {
-    .desktop { display: block; }
+  @include device(laptop-large) {
   }
 }
