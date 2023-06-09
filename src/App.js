@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -12,7 +13,7 @@ import PlanFunders from './pages/plan/funder';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/dashboard",
     element: <Dashboard />
   },
 

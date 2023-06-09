@@ -1,3 +1,4 @@
+import React from 'react';
 import {useEffect, useState, Fragment} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
@@ -11,15 +12,59 @@ import './dashboard.scss';
 
 function Dashboard() {
   const [projects, setProjects] = useState([]);
+  const [user, setUser] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
-    let url = api_path('/wips', {
-      owner: "jane.doe@example.com",
+    // Hardcoding this because utils.js is throwing an error and I don't know why
+    //   Unexpected Application Error!
+    //     arguments[key].clone is not a function. (In 'arguments[key].clone()', 'arguments[key].clone' is undefined)
+    let meUrl = 'http://localhost:3000/api/v2/me';
+    let meHeaders = new Headers();
+    meHeaders.append('Accept', "application/json");
+    let meOptions = Object.assign({
+      method: 'get',
+      mode: 'cors',
+      cache: 'no-cache',
+    }, meHeaders);
+
+    fetch(meUrl, meOptions).then((resp) => {
+      switch (resp.status) {
+        case 200:
+          return resp.json();
+          break;
+
+        default:
+          // TODO:: Error handling
+          // TODO:: Log and report errors to a logging services
+          // TODO:: Message to display to the user?
+          console.log('Error fetching from API');
+          console.log(resp);
+      }
+    }).then((data) => {
+      console.log(data.items[0]);
+      setUser(data.items[0]);
     });
-    let options = api_options({
-      headers: api_headers(),
-    });
+
+    // Hardcoding this because utils.js is throwing an error and I don't know why
+    //   Unexpected Application Error!
+    //     arguments[key].clone is not a function. (In 'arguments[key].clone()', 'arguments[key].clone' is undefined)
+    //let url = api_path('/wips', {
+    //  owner: user.email,
+    //});
+    //let options = api_options({
+    //  headers: api_headers(),
+    //});
+    let url = 'https://api.dmphub-dev.cdlib.org/wips'
+    let headers = new Headers();
+    headers.append('Accept', "application/json");
+    headers.append('Authorization', `Bearer ${user.token}`);
+    let options = Object.assign({
+      method: 'get',
+      mode: 'cors',
+      cache: 'no-cache',
+    }, headers);
+
     fetch(url, options).then((resp) => {
       switch (resp.status) {
         case 200:
@@ -45,6 +90,8 @@ function Dashboard() {
 
   return (
     <div id="Dashboard">
+      <p>Welcome back {user.name }</p>
+
       <h2>
         Dashboard
         <button className="primary" onClick={() => navigate("/plan/add")}>
