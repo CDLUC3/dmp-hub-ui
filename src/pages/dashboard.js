@@ -19,7 +19,7 @@ function Dashboard() {
     // Hardcoding this because utils.js is throwing an error and I don't know why
     //   Unexpected Application Error!
     //     arguments[key].clone is not a function. (In 'arguments[key].clone()', 'arguments[key].clone' is undefined)
-    let meUrl = 'http://localhost:3000/api/v2/me';
+    let meUrl = 'http://localhost:3000/api/v2/me/' // 'https://dmptool-stg.cdlib.org/me';
     let meHeaders = new Headers();
     meHeaders.append('Accept', "application/json");
     let meOptions = Object.assign({
@@ -28,6 +28,7 @@ function Dashboard() {
       cache: 'no-cache',
     }, meHeaders);
 
+    // Call the local DMPTool Rails app's API to get the currently logged in user's info
     fetch(meUrl, meOptions).then((resp) => {
       switch (resp.status) {
         case 200:
@@ -55,7 +56,7 @@ function Dashboard() {
     //let options = api_options({
     //  headers: api_headers(),
     //});
-    let url = 'https://api.dmphub-dev.cdlib.org/wips'
+    let url = 'http://localhost:3000/wips/' // 'https://dmptool-stg.cdlib.org/wips'
     let headers = new Headers();
     headers.append('Accept', "application/json");
     headers.append('Authorization', `Bearer ${user.token}`);
@@ -65,10 +66,15 @@ function Dashboard() {
       cache: 'no-cache',
     }, headers);
 
+    // Fetch the work in progress DMPs for the currently logged in user
     fetch(url, options).then((resp) => {
       switch (resp.status) {
         case 200:
           return resp.json();
+          break;
+
+        case 204:
+          return { items: [] }
           break;
 
         default:
@@ -79,8 +85,8 @@ function Dashboard() {
           console.log(resp);
       }
     }).then((data) => {
-      console.log(data.items.map(i => JSON.parse(i)));
-      setProjects(data.items.map(i => JSON.parse(i)));
+      console.log(data.items);
+      setProjects(data.items);
     });
   }, []);
 
@@ -90,7 +96,7 @@ function Dashboard() {
 
   return (
     <div id="Dashboard">
-      <p>Welcome back {user.name }</p>
+      <p>Welcome back {user.givenname } {user.surname}</p>
 
       <h2>
         Dashboard
