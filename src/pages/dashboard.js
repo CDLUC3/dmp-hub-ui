@@ -97,6 +97,7 @@ function Dashboard() {
   return (
     <div id="Dashboard">
       <p>Welcome back {user.givenname } {user.surname}</p>
+      <p><a href="/plans" class="exit-prototype">Back to standard Dashboard</a></p>
 
       <h2>
         Dashboard
