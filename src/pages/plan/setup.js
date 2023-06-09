@@ -1,4 +1,9 @@
 import {useNavigate} from 'react-router-dom';
+import {
+  api_path,
+  api_headers,
+  api_options,
+} from '../../utils.js';
 
 import './setup.scss';
 
@@ -11,28 +16,47 @@ function PlanSetup() {
     ev.preventDefault();
     console.log('Submit Form');
 
-    // TODO:: Steps to complete
-    // FIXME:: Where do we get the DMP ID, and we need a field to supply
-    // this.
-
     // Collect the form data
+    var stepData = {};
     const form = ev.target;
     const formData = new FormData(form);
-    console.log(formData.entries());
-    formData.forEach((item) => {
-      console.log(item);
-    })
-
-    const formJson = Object.formEntries(formData.entries());
-    console.log(formJson);
+    formData.forEach((value, key) => stepData[key] = value);
 
     // Make the save request
+    let url = api_path('/wips');
+    let options = api_options({
+      method: "post",
+      headers: api_headers(),
+      body: JSON.stringify({
+        "dmp": {
+          "title": stepData['project_name'],
+          "dmphub_owner": {
+            "mbox": "jane.doe@example.com"
+          },
+        },
+      }),
+    });
+    fetch(url, options).then((resp) => {
+      switch (resp.status) {
+        case 200:
+          return resp.json();
+          break;
 
-    // Handle Response
-
-    // Redirect
-    navigate("/plan/overview");
+        default:
+          // TODO:: Error handling
+          // TODO:: Log and report errors to a logging services
+          // TODO:: Message to display to the user?
+          console.log('Error fetching from API');
+          console.log(resp);
+      }
+    }).then((data) => {
+      console.log('Handle Response');
+      console.log(data.items.map(i => JSON.parse(i)));
+      // navigate("/plan/overview");
+    });
   }
+
+  // onClick={() => navigate("/plan/funders")}
 
   return (
     <div id="planSetup">
@@ -67,10 +91,7 @@ function PlanSetup() {
 
         <div className="form-actions todo">
           <button type="button" onClick={() => navigate("/")}>Cancel</button>
-          <button
-            type="submit"
-            className="primary"
-            onClick={() => navigate("/plan/funders")}>
+          <button type="submit" className="primary">
             Save &amp; Continue
           </button>
         </div>
