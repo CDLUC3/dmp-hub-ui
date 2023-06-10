@@ -1,4 +1,3 @@
-import React from 'react';
 import {useEffect, useState, Fragment} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
@@ -19,14 +18,9 @@ function Dashboard() {
     // Hardcoding this because utils.js is throwing an error and I don't know why
     //   Unexpected Application Error!
     //     arguments[key].clone is not a function. (In 'arguments[key].clone()', 'arguments[key].clone' is undefined)
-    let meUrl = 'http://localhost:3000/api/v2/me/' // 'https://dmptool-stg.cdlib.org/me';
-    let meHeaders = new Headers();
-    meHeaders.append('Accept', "application/json");
-    let meOptions = Object.assign({
-      method: 'get',
-      mode: 'cors',
-      cache: 'no-cache',
-    }, meHeaders);
+
+    let meUrl = 'http://localhost:3000/api/v2/me'
+    let meOptions = {};
 
     // Call the local DMPTool Rails app's API to get the currently logged in user's info
     fetch(meUrl, meOptions).then((resp) => {
@@ -56,7 +50,7 @@ function Dashboard() {
     //let options = api_options({
     //  headers: api_headers(),
     //});
-    let url = 'http://localhost:3000/wips/' // 'https://dmptool-stg.cdlib.org/wips'
+    let url = 'http://localhost:3000/dmps/' // 'https://dmptool-stg.cdlib.org/wips'
     let headers = new Headers();
     headers.append('Accept', "application/json");
     headers.append('Authorization', `Bearer ${user.token}`);
@@ -101,7 +95,7 @@ function Dashboard() {
 
       <h2>
         Dashboard
-        <button className="primary" onClick={() => navigate("/plan/add")}>
+        <button className="primary" onClick={() => navigate("/dmps/new")}>
           Add Plan
         </button>
       </h2>

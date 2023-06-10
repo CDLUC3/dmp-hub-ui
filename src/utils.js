@@ -1,7 +1,4 @@
-// import {TEST_TOKEN_2} from './tmp.js';
-
-export const API_BASE_URL = "https://api.dmphub-dev.cdlib.org";
-
+export const API_BASE_URL = 'http://localhost:3000/api/v2/'
 
 export function api_path(endpoint, queryParams) {
   if (queryParams) {
@@ -30,7 +27,7 @@ export function api_headers(extra_headers) {
   // Possible solution here is for Brian to build out endpoints within the DMPTool
   // that will act as a proxy for accessing Lambdas. That way the credentials for that
   // API can be stored along with the the other secure credentials used by Rails.
-  headers.append('Authorization', `Bearer 1111111111`); // ${TEST_TOKEN_2}`);
+  // headers.append('Authorization', `Bearer ${TEST_TOKEN_2}`);
 
   return headers;
 }

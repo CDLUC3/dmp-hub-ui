@@ -1,4 +1,3 @@
-import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import './funder.scss';
@@ -50,7 +49,7 @@ function PlanFunders() {
         </div>
 
         <div className="form-actions todo">
-          <button onClick={() => navigate("/")}>Cancel</button>
+          <button onClick={() => navigate("/dashboard")}>Cancel</button>
           <button className="primary">Save &amp; Continue</button>
         </div>
       </div>

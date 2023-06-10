@@ -1,4 +1,3 @@
-import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
   api_path,
@@ -53,11 +52,11 @@ function PlanSetup() {
     }).then((data) => {
       console.log('Handle Response');
       console.log(data.items.map(i => JSON.parse(i)));
-      // navigate("/plan/overview");
+      // navigate("/dmps/overview");
     });
   }
 
-  // onClick={() => navigate("/plan/funders")}
+  // onClick={() => navigate("/dmps/funders")}
 
   return (
     <div id="planSetup">
@@ -91,7 +90,7 @@ function PlanSetup() {
         </div>
 
         <div className="form-actions todo">
-          <button type="button" onClick={() => navigate("/")}>Cancel</button>
+          <button type="button" onClick={() => navigate("/dashboard")}>Cancel</button>
           <button type="submit" className="primary">
             Save &amp; Continue
           </button>
